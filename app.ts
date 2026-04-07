@@ -2,6 +2,7 @@ import express from 'express';
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
+import paymentRouter from './routes/payment-manager.route.js';
 
 dotenv.config();
 
@@ -12,7 +13,8 @@ export const db = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-app.use('/api', userRouter); 
+app.use('/api', userRouter);
+app.use('/api', paymentRouter);
 
 app.get('/test-db', async (req, res) => {
   try {
